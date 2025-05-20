@@ -3,12 +3,11 @@ import { Edit3 } from "lucide-react"
 import gallery from "../../assets/gallery.png"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-// import axiosInstance from "../../Interceptors/user"
+import axiosInstance from "../../Interceptors/userInterceptor"
 import { toast } from "react-toastify"
 
 function UserProfile() {
-  //   const navigate = useNavigate()
-  const [gender, setGender] = useState("male")
+  const navigate = useNavigate()
   const [user, setUser] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
   const [isVisible, setIsVisible] = useState(true)
@@ -20,43 +19,41 @@ function UserProfile() {
     image: null,
   })
 
-  //   const userId = useSelector((state) => state.userAuth.userid)
-  //   const user_authenticcated = useSelector(
-  //     (state) => state.userAuth.isAuthenticated
-  //   )
+    const userId = useSelector((state) => state.userAuth.userid)
+    const user_authenticcated = useSelector(
+      (state) => state.userAuth.isAuthenticated
+    )
 
-  //   useEffect(() => {
-  //     if (!user_authenticcated) {
-  //       navigate("/Login_page")
-  //     }
-  //   }, [user_authenticcated, navigate])
+    useEffect(() => {
+      if (!user_authenticcated) {
+        navigate("/Login_page")
+      }
+    }, [user_authenticcated, navigate])
 
   const fetchUserProfile = async () => {
-    // if (!userId) return
-    // try {
-    //   const res = await axiosInstance.get(`user_profile/${userId}`)
-    //   if (res.status === 200) {
-    //     const userdata = res.data.user || res.data
-    //     setUser(userdata)
-    //     setFormData({
-    //       gender: userdata.gender || "",
-    //       username: userdata.username || "",
-    //       phone: userdata.phone || "",
-    //       email: userdata.email || "",
-    //       image: null,
-    //     })
-    //     if (isVisible) {
-    //       setImagePreview(null)
-    //     }
-    //   }
-    // } catch (error) {
-    //   toast.error("Failed to fetch user details. Please try again later.")
-    // }
+    if (!userId) return
+    try {
+      const res = await axiosInstance.get(`user_profile/${userId}`)
+      if (res.status === 200) {
+        const userdata = res.data.user || res.data
+        setUser(userdata)
+        setFormData({
+          username: userdata.username || "",
+          email: userdata.email || "",
+          image: null,
+        })
+        if (isVisible) {
+          setImagePreview(null)
+        }
+      }
+    } catch (error) {
+      toast.error("Failed to fetch user details. Please try again later.")
+    }
   }
 
-  //   useEffect(() => {
-  //     fetchUserProfile()
-  //   }, [userId])
+    useEffect(() => {
+      fetchUserProfile()
+    }, [userId])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -73,35 +70,27 @@ function UserProfile() {
 
   const updateProfile = async () => {
     setLoading(true)
-    // try {
-    //   const formDataToSend = new FormData()
+    try {
+      const response = await axiosInstance.put(
+        `profile_create/${userId}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
 
-    //   Object.keys(formData).forEach((key) => {
-    //     if (formData[key] !== null && formData[key] !== undefined) {
-    //       formDataToSend.append(key, formData[key])
-    //     }
-    //   })
+      if (response.status === 200) {
+        toast.success(response.data.message)
+        setIsVisible(true)
 
-    //   const response = await axiosInstance.put(
-    //     `profile_create/${userId}`,
-    //     formDataToSend,
-    //     {
-    //       headers: { "Content-Type": "multipart/form-data" },
-    //     }
-    //   )
-
-    //   if (response.status === 200) {
-    //     toast.success("Updated successfully!")
-    //     setIsVisible(true)
-
-    //     await fetchUserProfile()
-    //   }
-    // } catch (error) {
-    //   console.error("Update profile error:", error.response?.data || error.message)
-    //   toast.error(error.response?.data?.detail || "Failed to update profile.")
-    // } finally {
-    //   setLoading(false)
-    // }
+        await fetchUserProfile()
+      }
+    } catch (error) {
+      console.error("Update profile error:", error.response?.data || error.message)
+      toast.error(error.response?.data?.detail || "Failed to update profile.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

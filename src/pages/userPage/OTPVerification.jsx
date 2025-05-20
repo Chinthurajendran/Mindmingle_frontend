@@ -153,7 +153,6 @@ const OTPVerification = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* OTP Fields */}
           <div className="flex justify-between gap-2">
             {otp.map((value, i) => (
               <input
@@ -170,13 +169,11 @@ const OTPVerification = () => {
             ))}
           </div>
 
-          {/* Timer */}
           <div className="text-center text-sm text-gray-500">
             Time remaining:{" "}
             <span className="font-medium">{formatTime(timer)}</span>
           </div>
 
-          {/* Verify Button */}
           <button
             type="submit"
             disabled={resendEnabled}
@@ -189,7 +186,6 @@ const OTPVerification = () => {
             {loading ? "Verifying..." : "Verify OTP"}
           </button>
 
-          {/* Resend OTP Button */}
           <button
             type="button"
             onClick={handleResendOTP}

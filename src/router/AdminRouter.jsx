@@ -4,16 +4,24 @@ import AdminHome from "../pages/adminPage/AdminHome"
 import AdminUser from "../pages/adminPage/AdminUser"
 import UserLoginPage from "../pages/userPage/userLoginPage"
 import AdminPrivateRouter from "../privateRoute/adminPrivateRouter"
+import AdminUserEdit from "../pages/adminPage/AdminUserEdit"
+import AdminUserCreate from "../pages/adminPage/AdminUserCreate"
+import AdminBloge from "../pages/adminPage/AdminBloge"
+import AdminBlogeEdite from "../pages/adminPage/AdminBlogeEdite"
 
 function AdminRouter() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/UserLoginPage" element={<UserLoginPage />} /> */}
+          <Route path="/UserLoginPage" element={<UserLoginPage />} />
+          <Route path="/AdminUserEdit" element={<AdminUserEdit />} />
+          <Route path="/AdminUserCreate" element={<AdminUserCreate />} />
+          <Route path="/AdminBlogeEdite" element={<AdminBlogeEdite />} />
           <Route element={<AdminPrivateRouter />}>
             <Route path="/AdminHome" element={<AdminHome />}>
               <Route path="AdminUser" element={<AdminUser />} />
+              <Route path="AdminBloge" element={<AdminBloge />} />
             </Route>
           </Route>
         </Routes>

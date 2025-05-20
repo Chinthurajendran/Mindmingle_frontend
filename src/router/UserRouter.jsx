@@ -12,6 +12,7 @@ import UserBlogs from "../pages/userPage/UserBlogs"
 import AdminHome from "../pages/adminPage/AdminHome"
 import UserPrivateRouter from "../privateRoute/userPrivateRouter"
 import CreateBlog from "../pages/userPage/CreateBlog"
+import EditBloge from "../pages/userPage/EditBloge"
 
 function UserRouter() {
   return (
@@ -31,6 +32,7 @@ function UserRouter() {
               <Route path="UserBlogs" element={<UserBlogs />} />
             </Route>
             <Route path="/CreateBlog" element={<CreateBlog />} />
+            <Route path="/EditBloge" element={<EditBloge />} />
           </Route>
         </Routes>
       </BrowserRouter>

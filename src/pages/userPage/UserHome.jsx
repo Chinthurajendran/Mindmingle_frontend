@@ -11,11 +11,11 @@ function UserHome() {
     (state) => state.userAuth.isAuthenticated
   )
 
-  useEffect(() => {
-    if (!authenticated) {
-      navigate("/UserLoginPage")
-    }
-  }, [authenticated, navigate])
+  // useEffect(() => {
+  //   if (!authenticated) {
+  //     navigate("/UserLoginPage")
+  //   }
+  // }, [authenticated, navigate])
 
   return (
     <div>

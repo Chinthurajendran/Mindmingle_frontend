@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, {useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { FiAlertCircle, FiEye, FiEyeOff } from "react-icons/fi"
+import axiosInstance from "../../Interceptors/adminInterceptor"
 
-const baseURL = import.meta.env.VITE_API_LOCAL_URL
 
-function SignUpPage() {
+function AdminUserCreate() {
   const [formError, setFormError] = useState("")
   const [formData, setFormData] = useState({
     username: "",
@@ -19,13 +18,6 @@ function SignUpPage() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-
-  useEffect(() => {
-    const storedEmail = localStorage.getItem("email")
-    if (storedEmail) {
-      setFormData((prev) => ({ ...prev, email: storedEmail }))
-    }
-  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -52,11 +44,11 @@ function SignUpPage() {
     }
 
     try {
-      const res = await axios.post(`${baseURL}/auth/signup`, formData)
+      const res = await axiosInstance.post(`user_create`, formData)
       if (res.status === 201) {
         localStorage.removeItem("email")
         toast.success(res.data.message)
-        navigate("/UserLoginPage")
+        navigate('/AdminHome/AdminUser')
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -71,7 +63,6 @@ function SignUpPage() {
       }
     }
   }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
@@ -117,9 +108,8 @@ function SignUpPage() {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              readOnly
               required
-              className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100"
+                            className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700"
             />
           </div>
 
@@ -188,4 +178,4 @@ function SignUpPage() {
   )
 }
 
-export default SignUpPage
+export default AdminUserCreate

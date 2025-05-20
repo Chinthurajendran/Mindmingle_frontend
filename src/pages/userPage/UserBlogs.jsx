@@ -27,7 +27,7 @@ function UserBlogs() {
   useEffect(() => {
     const fetchbloge = async () => {
       try {
-        const response = await axios.get(`${baseURL}/auth/bloge_list`)
+        const response = await axios.get(`${baseURL}/auth/bloge_list_profile`)
         if (response.status === 200) {
           const bloge_list = response.data.bloges
           setBloge(bloge_list)
@@ -40,12 +40,11 @@ function UserBlogs() {
   }, [])
 
   const handleCardClick = (id) => {
-    navigate(`/policy-details/${id}`)
+    navigate(`/EditBloge`, { state: { BlogeID: id } });
   }
 
   return (
     <div className="h-[73vh] bg-gray-100 flex flex-col items-center py-10 space-y-6">
-      {/* Show this section only if there are no blogs */}
       <div className="w-full max-w-6xl bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-6">
         <div className="flex items-center space-x-4">
           <PlusSquare className="w-12 h-12 text-gray-500" />
@@ -66,7 +65,6 @@ function UserBlogs() {
         </Link>
       </div>
 
-      {/* Blog Grid */}
       <div className="w-full max-w-6xl flex-1 overflow-y-auto px-2">
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4">
           {bloge.map((blog, index) => (

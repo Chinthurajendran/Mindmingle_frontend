@@ -106,7 +106,6 @@ function CreateBlog() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Upload Image */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Upload Image
@@ -128,7 +127,6 @@ function CreateBlog() {
             )}
           </div>
 
-          {/* Blog Description */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Blog Description
@@ -143,7 +141,6 @@ function CreateBlog() {
             ></textarea>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 px-6 rounded-md"

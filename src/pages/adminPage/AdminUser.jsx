@@ -1,45 +1,52 @@
-import React, { useState, useEffect } from "react";
-import { Edit3, Trash2 } from "lucide-react";
+import React, { useState, useEffect } from "react"
+import { Edit3, Trash2 } from "lucide-react"
+import axiosInstance from "../../Interceptors/adminInterceptor"
+import gallery from "../../assets/gallery.png"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 function AdminUser() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([])
+  const navigate = useNavigate()
 
-  // Simulate fetching user data (replace with actual API call)
+  const fetchbloge = async () => {
+    try {
+      const response = await axiosInstance.get(`user_list`)
+      if (response.status === 200) {
+        const users_list = response.data.users
+        setUsers(users_list)
+      }
+    } catch (error) {
+      console.error("Error fetching blogs:", error)
+    }
+  }
+  
   useEffect(() => {
-    // Example data (replace with API data)
-    setUsers([
-      {
-        id: 1,
-        image: "https://via.placeholder.com/50",
-        username: "John Doe",
-        email: "john@example.com",
-        loginStatus: "Active",
-      },
-      {
-        id: 2,
-        image: "https://via.placeholder.com/50",
-        username: "Jane Smith",
-        email: "jane@example.com",
-        loginStatus: "Inactive",
-      },
-      // Add more users as needed
-    ]);
-  }, []);
+    fetchbloge()
+  }, [])
 
-  const handleDelete = (userId) => {
-    // Logic to delete user (API call)
-    setUsers(users.filter((user) => user.id !== userId));
-  };
+  const handleDelete = async (userId) => {
+    console.log(userId)
+    try {
+      const response = await axiosInstance.put(`user_delete/${userId}`)
+      if (response.status === 200) {
+        toast.success("User deleted successfully")
+        fetchbloge()
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error)
+      toast.error("Failed to delete user. Please try again.")
+    }
+  }
 
   const handleEdit = (userId) => {
-    // Logic to edit user (navigate to edit user page)
-    console.log("Edit user with id:", userId);
-  };
+    navigate(`/AdminUserEdit`, { state: { userId: userId } })
+  }
 
   const handleCreateUser = () => {
-    // Logic to navigate to user creation page
-    console.log("Create new user");
-  };
+    navigate(`/AdminUserCreate`)
+  }
 
   return (
     <div className="p-6">
@@ -72,7 +79,7 @@ function AdminUser() {
               >
                 <td className="px-6 py-4">
                   <img
-                    src={user.image}
+                    src={user?.image || gallery}
                     alt="User"
                     className="w-14 h-14 object-cover rounded-full border border-gray-200"
                   />
@@ -82,23 +89,24 @@ function AdminUser() {
                 <td className="px-6 py-4">
                   <span
                     className={`px-3 py-1 rounded-full text-sm ${
-                      user.loginStatus === "Active"
+                      user.login_status
                         ? "bg-green-100 text-green-600"
                         : "bg-red-100 text-red-600"
                     }`}
                   >
-                    {user.loginStatus}
+                    {user.login_status ? "Active" : "Inactive"}
                   </span>
                 </td>
+
                 <td className="px-6 py-4 flex space-x-3">
                   <button
-                    onClick={() => handleEdit(user.id)}
+                    onClick={() => handleEdit(user.user_id)}
                     className="text-yellow-500 hover:text-yellow-600 transition duration-150"
                   >
                     <Edit3 size={20} />
                   </button>
                   <button
-                    onClick={() => handleDelete(user.id)}
+                    onClick={() => handleDelete(user.user_id)}
                     className="text-red-500 hover:text-red-600 transition duration-150"
                   >
                     <Trash2 size={20} />
@@ -110,7 +118,7 @@ function AdminUser() {
         </table>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdminUser;
+export default AdminUser
