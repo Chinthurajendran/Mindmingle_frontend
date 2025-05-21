@@ -7,16 +7,16 @@ import axiosInstance from "../../Interceptors/userInterceptor"
 
 const baseURL = import.meta.env.VITE_API_LOCAL_URL
 
-function BlogeCard({ image, title, description, onClick }) {
+function BlogCard({ image, title, description, onClick }) {
   return (
     <div
-      className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition"
       onClick={onClick}
+      className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden"
     >
       <img src={image} alt={title} className="w-full h-48 object-cover" />
       <div className="p-4">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-gray-600 text-sm mt-2">{description}</p>
+        <h3 className="text-lg font-bold text-gray-800 truncate">{title}</h3>
+        <p className="text-sm text-gray-600 mt-2 line-clamp-3">{description}</p>
       </div>
     </div>
   )
@@ -43,11 +43,11 @@ function UserBlogs() {
   }, [])
 
   const handleCardClick = (id) => {
-    navigate(`/EditBloge`, { state: { BlogeID: id } });
+    navigate(`/EditBloge`, { state: { BlogeID: id } })
   }
 
   return (
-    <div className="h-[73vh] bg-gray-100 flex flex-col items-center py-10 space-y-6">
+    <div className="h-[80vh] bg-gray-100 flex flex-col items-center py-1 space-y-6">
       <div className="w-full max-w-6xl bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-6">
         <div className="flex items-center space-x-4">
           <PlusSquare className="w-12 h-12 text-gray-500" />
@@ -71,7 +71,7 @@ function UserBlogs() {
       <div className="w-full max-w-6xl flex-1 overflow-y-auto px-2">
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4">
           {bloge.map((blog, index) => (
-            <BlogeCard
+            <BlogCard
               key={index + blog.blog_uid}
               image={blog.photo}
               title={`Blog #${index + 1}`}

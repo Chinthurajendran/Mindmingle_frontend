@@ -5,37 +5,30 @@ import { UserIcon } from "@heroicons/react/20/solid"
 
 function UserHeader() {
   const isAuthenticated = useSelector((state) => state.userAuth.isAuthenticated)
+
   return (
-    <div>
-      <header className="fixed top-0 left-0 w-full bg-blue-700 text-white py-6 z-50 shadow-md">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link to={"/"}>
-            <h1 className="text-3xl font-bold">MindMingle</h1>
-          </Link>
-          <nav>
-            <ul className="flex space-x-6">
-              <li>
-                {isAuthenticated ? (
-                  <>
-                    <Link to={"/UserProfilePage/UserProfile"}>
-                      <button className="relative transition-all duration-300 p-1 text-white">
-                        <UserIcon className="w-9 h-9" />
-                      </button>
-                    </Link>
-                  </>
-                ) : (
-                  <Link to="/UserLoginPage">
-                    <button className="bg-white text-blue-700 border border-blue-700 hover:bg-blue-100 font-bold py-2 px-4 rounded">
-                      <span>Sign In</span>
-                    </button>
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    </div>
+    <header className="fixed top-0 left-0 w-full bg-blue-700 shadow-md z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <Link to="/" className="text-white text-3xl font-extrabold hover:text-blue-300 transition">
+          MindMingle
+        </Link>
+
+        <nav>
+          {isAuthenticated ? (
+            <Link to="/UserProfilePage/UserProfile" className="group relative inline-flex items-center p-1 rounded-full hover:bg-blue-600 transition">
+              <UserIcon className="w-9 h-9 text-white group-hover:text-blue-200 transition" />
+              <span className="sr-only">User Profile</span>
+            </Link>
+          ) : (
+            <Link to="/UserLoginPage">
+              <button className="bg-white text-blue-700 font-semibold py-2 px-6 rounded-md hover:bg-blue-100 transition">
+                Sign In
+              </button>
+            </Link>
+          )}
+        </nav>
+      </div>
+    </header>
   )
 }
 

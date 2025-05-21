@@ -1,12 +1,101 @@
-# React + Vite
+# MingMigle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MingMigle is a dynamic and interactive React-based web application designed to enhance user engagement through features like blog posting, likes, comments, and more.
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Follow these instructions to set up and run the project locally.
 
-## Expanding the ESLint configuration
+### 📦 Prerequisites
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js (v18 or higher recommended)
+- npm / yarn / pnpm
+
+### 🔧 Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/Chinthurajendran/Mindmingle_frontend.git
+cd Mindmingle_frontend
+npm install
+# or
+yarn install
+````
+
+### 🔄 Running the App
+
+Start the development server:
+
+```bash
+npm start
+# or
+yarn start
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to view the app in your browser.
+
+---
+
+## 🧩 Features
+
+* 📝 Blog creation and listing
+* 👍 Like and 👎 Dislike functionality
+* 💬 Comment system with real-time UI updates
+* 🔒 User authentication & authorization (Redux + backend)
+* 🌐 Axios interceptor integration for secure API calls
+
+---
+
+## 🛠️ Technologies Used
+
+* **React.js**
+* **Redux Toolkit**
+* **Axios**
+* **React Router**
+* **Toastify** for notifications
+* **Tailwind CSS** for styling
+
+---
+
+## 📦 Backend
+
+This app is connected to a **FastAPI** backend hosted on AWS.
+Make sure the backend is running and API URLs are correctly set in your `.env` file:
+
+```env
+VITE_API_LOCAL_URL=http://localhost:8000
+```
+
+---
+
+## 📤 Deployment
+
+You can deploy this React app using:
+
+* **Vercel**
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome.
+If you have suggestions or bug reports, feel free to open an issue.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 📬 Contact
+
+**Chinthu Rajendran**
+🔗 [GitHub](https://github.com/Chinthurajendran)
+
+```
+
+Would you like me to export this as a `README.md` file that you can directly use in your repo?
+```
