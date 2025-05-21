@@ -3,6 +3,7 @@ import { PlusSquare, Pencil, Trash2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import axiosInstance from "../../Interceptors/adminInterceptor"
 import { toast } from "react-toastify"
+import Swal from "sweetalert2"
 
 function BlogeCard({ image, title, description, onEdit, onDelete }) {
   return (
@@ -57,15 +58,27 @@ function AdminBloge() {
   }
 
   const handleDelete = async (id) => {
-    try {
-      const res = await axiosInstance.put(`bloge_delete/${id}`)
-      if (res.status === 200) {
-        toast.success("Blog deleted successfully")
-        fetchbloge()
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    })
+
+    if (result.isConfirmed) {
+      try {
+        const res = await axiosInstance.put(`bloge_delete/${id}`)
+        if (res.status === 200) {
+          Swal.fire("Deleted!", "The blog has been deleted.", "success")
+          fetchbloge()
+        }
+      } catch (error) {
+        console.error("Delete failed:", error)
+        toast.error("Failed to delete blog")
       }
-    } catch (error) {
-      console.error("Delete failed:", error)
-      toast.error("Failed to delete blog")
     }
   }
 

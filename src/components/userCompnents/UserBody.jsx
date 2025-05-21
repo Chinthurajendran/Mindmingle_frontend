@@ -118,7 +118,37 @@ function UserBody() {
               <p className="text-gray-600 mb-6">{blog?.description}</p>
 
               <div className="flex items-center space-x-6 text-gray-700">
-                {blog.likes && blog.likes.includes(user_id) ? (
+                <div
+                  onClick={() => {
+                    if (user_id !== null && user_id !== undefined) {
+                      handleLike(blog.blog_uid)
+                    }
+                  }}
+                  className="flex items-center cursor-pointer hover:text-blue-700"
+                >
+                  <i
+                    className="fa fa-thumbs-up mr-2"
+                    style={{ fontSize: "20px" }}
+                  ></i>
+                  <span>Like ({blog.total_likes || 0})</span>
+                </div>
+
+                <div
+                  onClick={() => {
+                    if (user_id !== null && user_id !== undefined) {
+                      handleDislike(blog.blog_uid)
+                    }
+                  }}
+                  className="flex items-center cursor-pointer hover:text-blue-700"
+                >
+                  <i
+                    className="fa fa-thumbs-down mr-2"
+                    style={{ fontSize: "20px" }}
+                  ></i>
+                  <span>Dislike ({blog.total_dislikes || 0})</span>
+                </div>
+
+                {/* {blog.likes && blog.likes.includes(user_id) ? (
                   <div
                     onClick={() => {
                       if (user_id !== null && user_id !== undefined) {
@@ -131,7 +161,7 @@ function UserBody() {
                       className="fa fa-thumbs-down mr-2"
                       style={{ fontSize: "20px" }}
                     ></i>
-                    <span>Dislike ({blog.total_likes || 0})</span>
+                    <span>Dislike ({blog.total_dislikes || 0})</span>
                   </div>
                 ) : (
                   <div
@@ -148,7 +178,7 @@ function UserBody() {
                     ></i>
                     <span>Like ({blog.total_likes || 0})</span>
                   </div>
-                )}
+                )} */}
 
                 <button
                   onClick={handleCommentClick}

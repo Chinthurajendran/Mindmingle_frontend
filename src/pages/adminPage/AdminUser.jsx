@@ -5,6 +5,7 @@ import gallery from "../../assets/gallery.png"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import Swal from "sweetalert2"
 
 function AdminUser() {
   const [users, setUsers] = useState([])
@@ -21,22 +22,34 @@ function AdminUser() {
       console.error("Error fetching blogs:", error)
     }
   }
-  
+
   useEffect(() => {
     fetchbloge()
   }, [])
 
+
   const handleDelete = async (userId) => {
-    console.log(userId)
-    try {
-      const response = await axiosInstance.put(`user_delete/${userId}`)
-      if (response.status === 200) {
-        toast.success("User deleted successfully")
-        fetchbloge()
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    })
+
+    if (result.isConfirmed) {
+      try {
+        const response = await axiosInstance.put(`user_delete/${userId}`)
+        if (res.status === 200) {
+          Swal.fire("Deleted!", "The User has been deleted.", "success")
+          fetchbloge()
+        }
+      } catch (error) {
+        console.error("Delete failed:", error)
+        toast.error("Failed to delete blog")
       }
-    } catch (error) {
-      console.error("Error deleting user:", error)
-      toast.error("Failed to delete user. Please try again.")
     }
   }
 

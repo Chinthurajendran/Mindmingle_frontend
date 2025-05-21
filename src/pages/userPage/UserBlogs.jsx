@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { PlusSquare } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import { useSelector } from "react-redux"
+import axiosInstance from "../../Interceptors/userInterceptor"
 
 const baseURL = import.meta.env.VITE_API_LOCAL_URL
 
@@ -23,11 +25,12 @@ function BlogeCard({ image, title, description, onClick }) {
 function UserBlogs() {
   const navigate = useNavigate()
   const [bloge, setBloge] = useState([])
+  const userId = useSelector((state) => state.userAuth.userid)
 
   useEffect(() => {
     const fetchbloge = async () => {
       try {
-        const response = await axios.get(`${baseURL}/auth/bloge_list_profile`)
+        const response = await axiosInstance.get(`bloge_list_profile/${userId}`)
         if (response.status === 200) {
           const bloge_list = response.data.bloges
           setBloge(bloge_list)
