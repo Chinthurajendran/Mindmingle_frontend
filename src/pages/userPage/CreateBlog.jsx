@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { toast } from "react-toastify"
 import { FiAlertCircle } from "react-icons/fi"
-import axiosInstance from "../../Interceptors/userInterceptor"
+import axiosInstance from "../../Interceptors/UserInterceptor"
 import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 

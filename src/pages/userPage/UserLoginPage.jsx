@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux"
 import axios from "axios"
 import { toast } from "react-toastify"
 import { FiAlertCircle } from "react-icons/fi"
-import { login } from "../../store/slices/userAuthentication"
+import { login } from "../../store/slices/UserAuthentication"
 import { jwtDecode } from "jwt-decode"
-import { setTokens } from "../../store/slices/userToken"
-import { admin_login } from "../../store/slices/adminAuthentication"
-import { setAdminTokens } from "../../store/slices/adminToken"
+import { setTokens } from "../../store/slices/UserToken"
+import { admin_login } from "../../store/slices/AdminAuthentication"
+import { setAdminTokens } from "../../store/slices/AdminToken"
 import.meta.env
 
 const baseURL = import.meta.env.VITE_API_LOCAL_URL

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import axiosInstance from "../../Interceptors/userInterceptor";
+import axiosInstance from "../../Interceptors/UserInterceptor";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 

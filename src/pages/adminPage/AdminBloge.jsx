@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { PlusSquare, Pencil, Trash2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import axiosInstance from "../../Interceptors/adminInterceptor"
+import axiosInstance from "../../Interceptors/AdminInterceptor"
 import { toast } from "react-toastify"
 import Swal from "sweetalert2"
 

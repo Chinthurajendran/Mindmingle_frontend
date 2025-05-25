@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import UserLoginPage from "../pages/userPage/userLoginPage"
+import UserLoginPage from "../pages/userPage/UserLoginPage"
 import EmailVerification from "../pages/userPage/EmailVerification"
 import OTPVerification from "../pages/userPage/OTPVerification"
 import SignUpPage from "../pages/userPage/SignUpPage"
@@ -10,7 +10,7 @@ import UserProfilePage from "../pages/userPage/UserProfilePage"
 import UserProfile from "../pages/userPage/UserProfile"
 import UserBlogs from "../pages/userPage/UserBlogs"
 import AdminHome from "../pages/adminPage/AdminHome"
-import UserPrivateRouter from "../privateRoute/userPrivateRouter"
+import UserPrivateRouter from "../privateRoute/UserPrivateRouter"
 import CreateBlog from "../pages/userPage/CreateBlog"
 import EditBloge from "../pages/userPage/EditBloge"
 

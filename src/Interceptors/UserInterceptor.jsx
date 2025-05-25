@@ -1,8 +1,8 @@
 import axios from "axios"
 import { toast } from "react-toastify"
 import store from "../store/store"
-import { logout } from "../store/slices/userAuthentication"
-import { setTokens } from "../store/slices/userToken"
+import { logout } from "../store/slices/UserAuthentication"
+import { setTokens } from "../store/slices/UserToken"
 import.meta.env
 
 const baseURL = import.meta.env.VITE_API_LOCAL_URL

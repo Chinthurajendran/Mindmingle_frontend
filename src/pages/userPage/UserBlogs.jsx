@@ -3,7 +3,7 @@ import { PlusSquare } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useSelector } from "react-redux"
-import axiosInstance from "../../Interceptors/userInterceptor"
+import axiosInstance from "../../Interceptors/UserInterceptor"
 
 const baseURL = import.meta.env.VITE_API_LOCAL_URL
 

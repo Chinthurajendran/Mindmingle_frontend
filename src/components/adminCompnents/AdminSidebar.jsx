@@ -2,9 +2,9 @@ import React from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Users, FileText, LogOut } from "lucide-react"
 import { useSelector, useDispatch } from "react-redux"
-import { admin_logout } from "../../store/slices/adminAuthentication"
-import { clearAdminTokens } from "../../store/slices/adminToken"
-import axiosInstance from "../../Interceptors/adminInterceptor"
+import { admin_logout } from "../../store/slices/AdminAuthentication"
+import { clearAdminTokens } from "../../store/slices/AdminToken"
+import axiosInstance from "../../Interceptors/AdminInterceptor"
 import { toast } from "react-toastify"
 
 function AdminSidebar() {

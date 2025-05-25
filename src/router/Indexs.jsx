@@ -1,6 +1,6 @@
 import React from 'react'
-import UserRouter from './userRouter'
-import AdminRouter from './adminRouter'
+import UserRouter from './UserRouter'
+import AdminRouter from './AdminRouter'
 
 function Indexs() {
   return (

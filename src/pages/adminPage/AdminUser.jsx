@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Edit3, Trash2 } from "lucide-react"
-import axiosInstance from "../../Interceptors/adminInterceptor"
+import axiosInstance from "../../Interceptors/AdminInterceptor"
 import gallery from "../../assets/gallery.png"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"

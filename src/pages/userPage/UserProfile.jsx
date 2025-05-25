@@ -3,7 +3,7 @@ import { Edit3 } from "lucide-react"
 import gallery from "../../assets/gallery.png"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import axiosInstance from "../../Interceptors/userInterceptor"
+import axiosInstance from "../../Interceptors/UserInterceptor"
 import { toast } from "react-toastify"
 
 function UserProfile() {

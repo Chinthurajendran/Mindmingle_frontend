@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import axiosInstance from "../../Interceptors/adminInterceptor"
+import axiosInstance from "../../Interceptors/AdminInterceptor"
 
 function AdminUserEdit() {
   const navigate = useNavigate()

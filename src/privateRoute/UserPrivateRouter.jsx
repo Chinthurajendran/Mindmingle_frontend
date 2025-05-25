@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { logout } from "../store/slices/userAuthentication"
-import { clearTokens } from "../store/slices/userToken"
+import { logout } from "../store/slices/UserAuthentication"
+import { clearTokens } from "../store/slices/UserToken"
 import { useEffect, useState } from "react"
-import axiosInstance from "../Interceptors/userInterceptor"
+import axiosInstance from "../Interceptors/UserInterceptor"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 

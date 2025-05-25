@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { logout } from "../../store/slices/userAuthentication"
-import { clearTokens } from "../../store/slices/userToken"
+import { logout } from "../../store/slices/UserAuthentication"
+import { clearTokens } from "../../store/slices/UserToken"
 import { toast } from "react-toastify"
-import axiosInstance from "../../Interceptors/userInterceptor"
+import axiosInstance from "../../Interceptors/UserInterceptor"
 import { User, FileText, LogOut } from "lucide-react"
 
 function UserProfileSidebar() {

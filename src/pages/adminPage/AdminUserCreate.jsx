@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { FiAlertCircle, FiEye, FiEyeOff } from "react-icons/fi"
-import axiosInstance from "../../Interceptors/adminInterceptor"
+import axiosInstance from "../../Interceptors/AdminInterceptor"
 
 
 function AdminUserCreate() {
