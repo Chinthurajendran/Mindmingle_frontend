@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import  userSlice  from "./slices/userAuthentication"
-import adminSlice from "./slices/adminAuthentication";
-import tokenSlice from "./slices/userToken";
-import AdmintokenSlice from "./slices/adminToken";
+import  userSlice  from "./slices/UserAuthentication"
+import adminSlice from "./slices/AdminAuthentication";
+import tokenSlice from "./slices/UserToken";
+import AdmintokenSlice from "./slices/AdminToken";
 
 
 const persistConfig = {
