@@ -2,7 +2,6 @@ import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import AdminHome from "../pages/adminPage/AdminHome"
 import AdminUser from "../pages/adminPage/AdminUser"
-import UserLoginPage from "../pages/userPage/UserLoginPage"
 import AdminPrivateRouter from "../privateRoute/AdminPrivateRouter"
 import AdminUserEdit from "../pages/adminPage/AdminUserEdit"
 import AdminUserCreate from "../pages/adminPage/AdminUserCreate"
@@ -14,7 +13,6 @@ function AdminRouter() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/UserLoginPage" element={<UserLoginPage />} />
           <Route path="/AdminUserEdit" element={<AdminUserEdit />} />
           <Route path="/AdminUserCreate" element={<AdminUserCreate />} />
           <Route path="/AdminBlogeEdite" element={<AdminBlogeEdite />} />

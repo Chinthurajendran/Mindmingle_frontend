@@ -13,9 +13,10 @@ function UserBody() {
   const [formData, setFormData] = useState({
     comments: "",
   })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [usersPerPage] = useState(2)
 
   const user_id = useSelector((state) => state.userAuth.userid)
-  console.log("user_id:", user_id, typeof user_id)
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -84,13 +85,17 @@ function UserBody() {
       toast.error("Failed to add comment. Please try again.")
     }
   }
-  console.log(blogs)
+
+  const indexOfLastBlog = currentPage * usersPerPage
+  const indexOfFirstBlog = indexOfLastBlog - usersPerPage
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog)
+  const totalPages = Math.ceil(blogs.length / usersPerPage)
 
   return (
     <div>
       <main className="py-12 px-6 pt-24">
         <div className="max-w-2xl mx-auto space-y-12">
-          {blogs.map((blog) => (
+          {currentBlogs.map((blog) => (
             <section
               key={blog?.blog_uid}
               className="bg-white p-6 rounded-lg shadow-lg"
@@ -253,6 +258,40 @@ function UserBody() {
               )}
             </section>
           ))}
+        </div>
+
+        <div className="flex justify-center items-center mt-6 space-x-2">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded-lg font-semibold transition-all 
+      ${
+        currentPage === 1
+          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+          : "bg-blue-600 text-white hover:bg-blue-700"
+      }`}
+          >
+            ← Previous
+          </button>
+
+          <span className="px-5 py-2 text-lg font-bold text-gray-800 bg-gray-200 rounded-md shadow-sm">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded-lg font-semibold transition-all 
+      ${
+        currentPage === totalPages
+          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+          : "bg-blue-600 text-white hover:bg-blue-700"
+      }`}
+          >
+            Next →
+          </button>
         </div>
       </main>
     </div>

@@ -17,6 +17,7 @@ const AdminPrivateRouter = () => {
       dispatch(admin_logout())
       dispatch(clearAdminTokens())
       navigate("/UserLoginPage")
+      setShouldRedirect(true)
     }
   }, [isAuthenticated, dispatch, navigate])
 

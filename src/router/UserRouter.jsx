@@ -19,7 +19,6 @@ function UserRouter() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/AdminHome" element={<AdminHome />}></Route>
           <Route path="/UserLoginPage" element={<UserLoginPage />} />
           <Route path="/EmailVerification" element={<EmailVerification />} />
           <Route path="/OTPVerification" element={<OTPVerification />} />
